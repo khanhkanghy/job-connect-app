@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 app.get('/api/test-db', async (req, res) => {
   try {
     const User = require('./models/User');
-    const Job = require('./models/Job');
+    const Job = require('./models/job_temp');
     const userCount = await User.countDocuments();
     const jobCount = await Job.countDocuments();
     res.json({ 
