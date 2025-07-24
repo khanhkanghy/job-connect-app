@@ -11,7 +11,7 @@ const app = express();
 const corsOptions = {
   origin: [
     'http://localhost:3000',
-    'https://job-connect-frontend.vercel.app'
+    'https://job-connect-app-bay.vercel.app'
   ],
   credentials: true
 };
@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 app.get('/api/test-db', async (req, res) => {
   try {
     const User = require('./models/User');
-    const Job = require('./models/Job');
+    const Job = require('./models/job');
     const userCount = await User.countDocuments();
     const jobCount = await Job.countDocuments();
     res.json({ 
