@@ -1,5 +1,5 @@
 // controllers/jobController.js
-const Job = require('../models/job_temp');
+const Job = require('../models/Job');
 const User = require('../models/User');
 
 // Tạo job mới (chỉ nhà tuyển dụng)

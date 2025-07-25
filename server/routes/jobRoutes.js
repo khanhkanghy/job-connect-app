@@ -17,20 +17,22 @@ const router = express.Router();
 
 // Routes công khai
 router.get('/', getJobs);
-router.get('/:id', getJobById);
 
 // Routes cần xác thực
 router.use(protect);
 
-// Routes cho employer
+// Routes cho employer - đặt trước routes có parameter
 router.post('/', createJob);
 router.get('/my/jobs', getMyJobs);
+
+// Routes cho worker - đặt trước routes có parameter
+router.get('/my/applied', getAppliedJobs); // Lấy việc đã ứng tuyển
+
+// Routes có parameter - đặt sau các routes cụ thể
+router.get('/:id', getJobById);
 router.get('/:id/applicants', getJobApplicants); // Lấy danh sách ứng viên
+router.post('/:id/apply', applyToJob); // Ứng tuyển job
 router.put('/:id/applicants/:applicantId/accept', acceptApplicant); // Chấp nhận ứng viên
 router.put('/:id/applicants/:applicantId/reject', rejectApplicant); // Từ chối ứng viên
-
-// Routes cho worker
-router.post('/:id/apply', applyToJob); // Ứng tuyển job
-router.get('/my/applied', getAppliedJobs); // Lấy việc đã ứng tuyển
 
 module.exports = router;
