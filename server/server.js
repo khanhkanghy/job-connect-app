@@ -51,13 +51,12 @@ const jobRoutes = require('./routes/jobRoutes');
 app.use('/api/jobs', jobRoutes);
 
 // Serve static files từ frontend (cho production)
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')));
-  
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
-  });
-}
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '../client/build')));
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../client/build/index.html'));
+//   });
+// }
 
 // Connect MongoDB
 mongoose.connect(process.env.MONGO_URI)
