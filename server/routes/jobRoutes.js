@@ -29,10 +29,10 @@ router.get('/my/jobs', getMyJobs);
 router.get('/my/applied', getAppliedJobs); // Lấy việc đã ứng tuyển
 
 // Routes có parameter - đặt sau các routes cụ thể
-router.get('/:id', getJobById);
-router.get('/:id/applicants', getJobApplicants); // Lấy danh sách ứng viên
-router.post('/:id/apply', applyToJob); // Ứng tuyển job
-router.put('/:id/applicants/:applicantId/accept', acceptApplicant); // Chấp nhận ứng viên
-router.put('/:id/applicants/:applicantId/reject', rejectApplicant); // Từ chối ứng viên
+router.get('/:jobId', getJobById);
+router.get('/:jobId/applicants', getJobApplicants); // Lấy danh sách ứng viên
+router.post('/:jobId/apply', applyToJob); // Ứng tuyển job
+router.put('/:jobId/applicants/:applicantId/accept', acceptApplicant); // Chấp nhận ứng viên
+router.put('/:jobId/applicants/:applicantId/reject', rejectApplicant); // Từ chối ứng viên
 
 module.exports = router;
