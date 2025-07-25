@@ -17,22 +17,15 @@ const router = express.Router();
 
 // Routes công khai
 router.get('/', getJobs);
+router.get('/:jobId', getJobById);
 
 // Routes cần xác thực
-router.use(protect);
-
-// Routes cho employer - đặt trước routes có parameter
-router.post('/', createJob);
-router.get('/my/jobs', getMyJobs);
-
-// Routes cho worker - đặt trước routes có parameter
-router.get('/my/applied', getAppliedJobs); // Lấy việc đã ứng tuyển
-
-// Routes có parameter - đặt sau các routes cụ thể
-router.get('/:jobId', getJobById);
-router.get('/:jobId/applicants', getJobApplicants); // Lấy danh sách ứng viên
-router.post('/:jobId/apply', applyToJob); // Ứng tuyển job
-router.put('/:jobId/applicants/:applicantId/accept', acceptApplicant); // Chấp nhận ứng viên
-router.put('/:jobId/applicants/:applicantId/reject', rejectApplicant); // Từ chối ứng viên
+router.post('/', protect, createJob);
+router.get('/my/jobs', protect, getMyJobs);
+router.get('/my/applied', protect, getAppliedJobs); // Lấy việc đã ứng tuyển
+router.get('/:jobId/applicants', protect, getJobApplicants); // Lấy danh sách ứng viên
+router.post('/:jobId/apply', protect, applyToJob); // Ứng tuyển job
+router.put('/:jobId/applicants/:applicantId/accept', protect, acceptApplicant); // Chấp nhận ứng viên
+router.put('/:jobId/applicants/:applicantId/reject', protect, rejectApplicant); // Từ chối ứng viên
 
 module.exports = router;
