@@ -22,7 +22,7 @@ const Profile = () => {
           };
           
           const res = await axios.get(`${config.API_BASE_URL}/api/jobs/my/applied`, config);
-          setAppliedJobs(res.data.jobs);
+          setAppliedJobs(Array.isArray(res.data.jobs) ? res.data.jobs : []);
         } catch (err) {
           console.error('Lỗi khi tải danh sách việc đã ứng tuyển');
         } finally {
@@ -94,7 +94,7 @@ const Profile = () => {
             <h3>Việc làm đã ứng tuyển</h3>
             {loading ? (
               <p>Đang tải...</p>
-            ) : appliedJobs.length === 0 ? (
+            ) : !Array.isArray(appliedJobs) || appliedJobs.length === 0 ? (
               <p>Bạn chưa ứng tuyển công việc nào.</p>
             ) : (
               <div className="applied-jobs-list">
