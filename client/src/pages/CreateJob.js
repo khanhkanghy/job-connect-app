@@ -3,6 +3,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
+import config from '../config';
 
 const CreateJob = () => {
   const { user } = useContext(AuthContext);
@@ -71,7 +72,7 @@ const CreateJob = () => {
         }
       };
 
-      const res = await axios.post('http://localhost:5000/api/jobs', jobData, config);
+      const res = await axios.post(`${config.API_BASE_URL}/api/jobs`, jobData, config);
       
       alert('Tạo việc làm thành công!');
       navigate(`/jobs/${res.data.job._id}`);

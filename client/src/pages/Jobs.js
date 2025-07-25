@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import config from '../config';
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -11,7 +12,7 @@ const Jobs = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/jobs');
+        const res = await axios.get(`${config.API_BASE_URL}/api/jobs`);
         setJobs(res.data.jobs);
         setLoading(false);
       } catch (err) {

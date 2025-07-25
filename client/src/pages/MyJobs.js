@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
+import config from '../config';
 
 const MyJobs = () => {
   const { user } = useContext(AuthContext);
@@ -20,7 +21,7 @@ const MyJobs = () => {
           }
         };
 
-        const res = await axios.get('http://localhost:5000/api/jobs/my/jobs', config);
+        const res = await axios.get(`${config.API_BASE_URL}/api/jobs/my/jobs`, config);
         setJobs(res.data.jobs);
         setLoading(false);
       } catch (err) {
@@ -43,7 +44,7 @@ const MyJobs = () => {
         }
       };
 
-      await axios.put(`http://localhost:5000/api/jobs/${jobId}/applicants/${applicantId}/accept`, {}, config);
+      await axios.put(`${config.API_BASE_URL}/api/jobs/${jobId}/applicants/${applicantId}/accept`, {}, config);
       alert('Chấp nhận ứng viên thành công!');
       
       // Reload lại danh sách
@@ -53,7 +54,7 @@ const MyJobs = () => {
           'Authorization': `Bearer ${token2}`
         }
       };
-      const res = await axios.get('http://localhost:5000/api/jobs/my/jobs', config2);
+      const res = await axios.get(`${config.API_BASE_URL}/api/jobs/my/jobs`, config2);
       setJobs(res.data.jobs);
     } catch (err) {
       alert('Lỗi khi chấp nhận ứng viên');
@@ -69,7 +70,7 @@ const MyJobs = () => {
         }
       };
 
-      await axios.put(`http://localhost:5000/api/jobs/${jobId}/applicants/${applicantId}/reject`, {}, config);
+      await axios.put(`${config.API_BASE_URL}/api/jobs/${jobId}/applicants/${applicantId}/reject`, {}, config);
       alert('Từ chối ứng viên thành công!');
       
       // Reload lại danh sách
@@ -79,7 +80,7 @@ const MyJobs = () => {
           'Authorization': `Bearer ${token2}`
         }
       };
-      const res = await axios.get('http://localhost:5000/api/jobs/my/jobs', config2);
+      const res = await axios.get(`${config.API_BASE_URL}/api/jobs/my/jobs`, config2);
       setJobs(res.data.jobs);
     } catch (err) {
       alert('Lỗi khi từ chối ứng viên');

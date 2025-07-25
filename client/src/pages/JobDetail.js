@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import config from '../config';
 
 const JobDetail = () => {
   const { id } = useParams();
@@ -20,7 +21,7 @@ const JobDetail = () => {
 
     const fetchJob = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/jobs/${id}`);
+        const res = await axios.get(`${config.API_BASE_URL}/api/jobs/${id}`);
         setJob(res.data.job);
         setLoading(false);
       } catch (err) {
@@ -47,7 +48,7 @@ const JobDetail = () => {
         }
       };
 
-      await axios.post(`http://localhost:5000/api/jobs/${id}/apply`, {}, config);
+      await axios.post(`${config.API_BASE_URL}/api/jobs/${id}/apply`, {}, config);
       alert('Ứng tuyển thành công!');
     } catch (err) {
       alert(err.response?.data?.message || 'Lỗi khi ứng tuyển');

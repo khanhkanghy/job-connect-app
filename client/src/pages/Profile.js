@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import axios from 'axios';
+import config from '../config';
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
@@ -20,7 +21,7 @@ const Profile = () => {
             }
           };
           
-          const res = await axios.get('http://localhost:5000/api/jobs/my/applied', config);
+          const res = await axios.get(`${config.API_BASE_URL}/api/jobs/my/applied`, config);
           setAppliedJobs(res.data.jobs);
         } catch (err) {
           console.error('Lỗi khi tải danh sách việc đã ứng tuyển');
